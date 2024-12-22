@@ -44,10 +44,10 @@ if(WIN32)
   set(DEFFILE ../win/jpeg${SO_MAJOR_VERSION}.def)
 endif()
 if(MSVC)
-  configure_file(${CMAKE_SOURCE_DIR}/win/jpeg.rc.in
+  configure_file(${CMAKE_CURRENT_LIST_DIR}/../win/jpeg.rc.in
     ${CMAKE_BINARY_DIR}/win/jpeg.rc)
   set(JPEG_SRCS ${JPEG_SRCS} ${CMAKE_BINARY_DIR}/win/jpeg.rc)
-endif()
+endif() 
 add_library(jpeg SHARED ${JPEG_SRCS} ${DEFFILE} ${SIMD_TARGET_OBJECTS}
   ${SIMD_OBJS} $<TARGET_OBJECTS:jpeg12> $<TARGET_OBJECTS:jpeg16>)
 
@@ -112,8 +112,8 @@ add_executable(jpegtran ../jpegtran.c ../cdjpeg.c ../rdswitch.c ../transupp.c)
 target_link_libraries(jpegtran jpeg)
 set_property(TARGET jpegtran PROPERTY COMPILE_FLAGS "${USE_SETMODE}")
 
-add_executable(example ../example.c)
-target_link_libraries(example jpeg)
+add_executable(jpg_example ../example.c)
+target_link_libraries(jpg_example jpeg)
 
 add_executable(jcstest ../jcstest.c)
 target_link_libraries(jcstest jpeg)
